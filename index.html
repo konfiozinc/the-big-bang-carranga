@@ -19,14 +19,14 @@
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
         .fade-in-up { opacity: 0; animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         
-        /* Efecto de Brillo para el Logotipo Musical (Wow Effect) */
+        /* Efecto de Brillo Corporativo (Wow Effect) */
         @keyframes musicalGlow {
             0%, 100% { border-color: rgba(234, 179, 8, 0.4); box-shadow: 0 0 12px rgba(4, 120, 87, 0.3); }
-            50% { border-color: rgba(4, 120, 87, 0.8); box-shadow: 0 0 20px rgba(234, 179, 8, 0.5); }
+            50% { border-color: rgba(4, 120, 87, 0.8); box-shadow: 0 0 20px rgba(234, 179, 8, 0.6); }
         }
         .wow-music { animation: musicalGlow 4s infinite ease-in-out; }
         
-        /* Efecto de pulso controlado para el botón oficial de WhatsApp */
+        /* Efecto de pulso para el botón oficial de WhatsApp */
         @keyframes whatsappPulse {
             0%, 100% { transform: scale(1); box-shadow: 0 8px 20px -4px rgba(37, 211, 102, 0.4); }
             50% { transform: scale(1.02); box-shadow: 0 14px 25px -4px rgba(37, 211, 102, 0.6); }
@@ -42,7 +42,7 @@
 </head>
 <body class="bg-slate-950 w-full flex justify-center items-center overflow-hidden">
 
-    <!-- 1. SPLASH SCREEN (Transición de Marca) -->
+    <!-- 1. SPLASH SCREEN -->
     <div id="splash" class="flex flex-col items-center justify-center">
         <div class="text-center animate-pulse">
             <div class="w-20 h-20 mx-auto bg-gradient-to-tr from-emerald-600 to-emerald-500 rounded-full flex items-center justify-center shadow-2xl border-4 border-white mb-3">
@@ -59,24 +59,26 @@
         <!-- CUERPO DE LA APP -->
         <div class="flex-grow flex flex-col justify-between pb-24 overflow-y-auto">
             
-            <!-- 2. PORTADA & HERO (Ubicación de Seguridad Central) -->
+            <!-- 2. PORTADA & HERO CORREGIDA (Ubicación de Seguridad Central del Logo) -->
             <header class="relative bg-gradient-to-b from-emerald-800 via-emerald-950 to-slate-900 pt-6 pb-6 px-5 text-center text-white rounded-b-[40px] shadow-2xl flex-shrink-0 border-b border-emerald-700/20">
                 <div class="absolute top-3 right-4 bg-yellow-400 text-emerald-950 font-black px-2.5 py-0.5 rounded-full text-[8px] uppercase tracking-wider shadow-md">
                     Música en Vivo
                 </div>
                 
                 <!-- Título Superior Directo -->
-                <h2 class="text-3xl font-black text-white mt-2 tracking-tight bg-gradient-to-r from-white via-slate-100 to-slate-300 bg-clip-text text-transparent fade-in-up">The Big Bang</h2>
-                <p class="text-yellow-400 font-bold text-[11px] uppercase tracking-widest mt-0.5 fade-in-up">Carranga Profesional</p>
+                <h2 class="text-3xl font-black text-white mt-2 tracking-tight bg-gradient-to-r from-white via-slate-100 to-slate-300 bg-clip-text text-transparent">The Big Bang</h2>
+                <p class="text-yellow-400 font-bold text-[11px] uppercase tracking-widest mt-0.5">Carranga Profesional</p>
                 
-                <!-- Logotipo Ubicado en el Centro Real de la Cabecera (Totalmente Seguro y Visible) -->
-                <div class="w-20 h-20 mx-auto bg-slate-950 rounded-full flex flex-col items-center justify-center border-4 wow-music p-1 my-3 shadow-lg" style="animation-delay: 100ms;">
-                    <i class="fas fa-music text-2xl text-yellow-400 animate-pulse"></i>
-                    <span class="font-black text-[7px] text-emerald-400 tracking-tighter mt-0.5 uppercase">Carranga</span>
+                <!-- LOGO CON FORCE-RENDER (Círculo Blanco Premium Central de la Primera Entrega) -->
+                <div class="w-20 h-20 mx-auto bg-white rounded-full flex flex-col items-center justify-center border-4 wow-music p-2 my-3 shadow-lg shadow-emerald-950/50 block">
+                    <svg class="w-10 h-10 text-emerald-800 animate-pulse" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+                    </svg>
+                    <span class="font-black text-[7px] text-slate-900 tracking-tighter mt-0.5 uppercase">MONTAJE</span>
                 </div>
                 
-                <!-- Mensaje Corto Institucional -->
-                <div class="bg-slate-950/70 rounded-xl p-2 border border-emerald-500/20 backdrop-blur-md max-w-[210px] mx-auto shadow-inner fade-in-up">
+                <!-- Mensaje Corto Institucional / Eslogan -->
+                <div class="bg-slate-950/70 rounded-xl p-2 border border-emerald-500/20 backdrop-blur-md max-w-[210px] mx-auto shadow-inner">
                     <p class="text-[8px] uppercase text-emerald-400 tracking-widest font-bold">Eslogan</p>
                     <p class="text-[11px] font-medium text-white mt-0.5">El show parrandero para tu evento</p>
                 </div>
@@ -86,14 +88,14 @@
             <div class="px-5 space-y-3.5 flex-grow flex flex-col justify-center mt-2">
                 
                 <!-- 3. BOTÓN PRINCIPAL CON COLOR OFICIAL DE WHATSAPP (#25D366) -->
-                <div class="fade-in-up">
+                <div>
                     <a href="https://wa.me/573105591651?text=Hola%20The%20Big%20Bang%20Carranga,%20me%20gustaría%20cotizar%20una%20presentación%20musical%20para%20un%20evento" target="_blank" class="w-full flex items-center justify-center bg-[#25D366] text-white font-black py-3.5 px-4 rounded-xl text-center text-xs uppercase tracking-wider transition-transform transform active:scale-95 shadow-lg shadow-green-500/20 pulse-whatsapp">
                         <i class="fab fa-whatsapp text-xl mr-2 text-white"></i>¡COTIZAR AGRUPACIÓN YA!
                     </a>
                 </div>
 
                 <!-- CATEGORÍAS COMERCIALES DE EVENTOS EN CRISTAL (Glassmorphism) -->
-                <div class="grid grid-cols-2 gap-2 fade-in-up">
+                <div class="grid grid-cols-2 gap-2">
                     <div class="bg-slate-800/40 border border-slate-700/30 p-2.5 rounded-xl flex items-center gap-2 shadow-md">
                         <div class="w-6 h-6 bg-emerald-500/10 rounded-lg flex items-center justify-center text-emerald-400 text-xs flex-shrink-0 shadow-inner"><i class="fas fa-glass-cheers"></i></div>
                         <span class="text-[10px] font-bold text-slate-300 leading-tight">Fiestas & Parrandas</span>
@@ -113,7 +115,7 @@
                 </div>
 
                 <!-- ENLACE TELEFÓNICO DIRECTO NATIVO -->
-                <div class="fade-in-up">
+                <div>
                     <a href="tel:+573105591651" class="w-full bg-slate-800/80 border border-slate-700/60 py-2.5 px-2 rounded-xl flex items-center justify-center gap-1.5 text-[10px] font-bold text-slate-300 transition-colors hover:bg-slate-700">
                         <i class="fas fa-phone text-emerald-500"></i> Llamar Directo: 310 5591651
                     </a>
@@ -121,7 +123,7 @@
             </div>
             
             <!-- ACCIÓN DE GUARDADO VCARD -->
-            <div class="px-5 mt-auto pt-2 fade-in-up">
+            <div class="px-5 mt-auto pt-2">
                 <button id="btn-vcard" class="w-full bg-emerald-700 hover:bg-emerald-600 text-white font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 text-xs uppercase tracking-wider border border-emerald-600 shadow-md">
                     <i class="fas fa-user-plus text-white"></i> GUARDAR CONTACTO EN AGENDA
                 </button>
@@ -153,7 +155,7 @@
         </nav>
     </div>
 
-    <!-- ================= MODALES INTERACTIVOS (ARQUITECTURA FIJA) ================= -->
+    <!-- ================= MODALES INTERACTIVOS ================= -->
 
     <!-- MODAL DE SERVICIOS -->
     <div id="modal-services" class="modal-overlay">
@@ -251,7 +253,7 @@
                 }
             }, 1000);
 
-            // Controlador de Modales Modular
+            // Controlador de Modales
             const setupAppModal = (triggerId, modalId) => {
                 const trigger = document.getElementById(triggerId);
                 const modal = document.getElementById(modalId);
@@ -262,17 +264,16 @@
                 modal.addEventListener('click', (e) => { if(e.target === modal) modal.classList.remove('active'); });
             };
 
-            // URL Dinámica Nativa del proyecto
             const urlRealProduccion = window.location.href;
 
-            // Inicializar disparadores táctiles de la barra de navegación inferior
+            // Inicializar disparadores de la barra de navegación
             setupAppModal('nav-services', 'modal-services');
             setupAppModal('nav-gallery', 'modal-gallery');
             setupAppModal('nav-testimonials', 'modal-testimonials');
             setupAppModal('nav-coverage', 'modal-coverage');
             setupAppModal('nav-qr', 'modal-qr');
 
-            // Generador de QR dinámico
+            // Generador de QR real
             const qrBox = document.getElementById("qrcode");
             if(qrBox) {
                 new QRCode(qrBox, {
@@ -285,7 +286,7 @@
                 });
             }
 
-            // Descarga de tarjeta vCard corporativa
+            // Descarga de vCard
             const btnVcard = document.getElementById('btn-vcard');
             if (btnVcard) {
                 btnVcard.addEventListener('click', (e) => {
