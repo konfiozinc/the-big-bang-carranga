@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-slate-950 select-none">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="theme-color" content="#047857"/>
+    <title>The Big Bang Carranga - Tarjeta Digital Profesional</title>
+    
+    <!-- Tailwind CSS & Iconografía Premium -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in-up { opacity: 0; animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        
+        /* Efecto de Brillo para el Logotipo Musical (Wow Effect) */
+        @keyframes musicalGlow {
+            0%, 100% { border-color: rgba(234, 179, 8, 0.4); box-shadow: 0 0 12px rgba(4, 120, 87, 0.3); }
+            50% { border-color: rgba(4, 120, 87, 0.8); box-shadow: 0 0 20px rgba(234, 179, 8, 0.5); }
+        }
+        .wow-music { animation: musicalGlow 4s infinite ease-in-out; }
+        
+        /* Efecto de pulso controlado para el botón oficial de WhatsApp */
+        @keyframes whatsappPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 8px 20px -4px rgba(37, 211, 102, 0.4); }
+            50% { transform: scale(1.02); box-shadow: 0 14px 25px -4px rgba(37, 211, 102, 0.6); }
+        }
+        .pulse-whatsapp { animation: whatsappPulse 2s infinite ease-in-out; }
+        
+        .modal-overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(8px); z-index: 50; display: flex; align-items: center; justify-content: center; padding: 20px; opacity: 0; visibility: hidden; transition: opacity 0.2s ease, visibility 0.2s ease; }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal-content { background: #ffffff; border-radius: 28px; width: 100%; max-w: 326px; transform: scale(0.96); transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1); border: 1px solid rgba(255,255,255,0.1); }
+        .modal-overlay.active .modal-content { transform: scale(1); }
+        .app-container { height: 100vh; height: 100dvh; }
+    </style>
+</head>
+<body class="bg-slate-950 w-full flex justify-center items-center overflow-hidden">
+
+    <!-- 1. SPLASH SCREEN (Transición de Marca) -->
+    <div id="splash" class="flex flex-col items-center justify-center">
+        <div class="text-center animate-pulse">
+            <div class="w-20 h-20 mx-auto bg-gradient-to-tr from-emerald-600 to-emerald-500 rounded-full flex items-center justify-center shadow-2xl border-4 border-white mb-3">
+                <i class="fas fa-guitar text-3xl text-white"></i>
+            </div>
+            <h1 class="text-2xl font-black text-white tracking-wider">THE BIG BANG</h1>
+            <p class="text-yellow-400 text-[10px] font-bold uppercase tracking-widest mt-1">Carranga Show</p>
+        </div>
+    </div>
+
+    <!-- APP CONTAINER FIJO (ALTO DE PANTALLA CONTENIDO - SIN SCROLL WEB) -->
+    <div class="app-container w-full max-w-[380px] bg-slate-900 relative flex flex-col justify-between overflow-hidden shadow-2xl">
+        
+        <!-- CUERPO DE LA APP -->
+        <div class="flex-grow flex flex-col justify-between pb-24 overflow-y-auto">
+            
+            <!-- 2. PORTADA & HERO (Ubicación de Seguridad Central) -->
+            <header class="relative bg-gradient-to-b from-emerald-800 via-emerald-950 to-slate-900 pt-6 pb-6 px-5 text-center text-white rounded-b-[40px] shadow-2xl flex-shrink-0 border-b border-emerald-700/20">
+                <div class="absolute top-3 right-4 bg-yellow-400 text-emerald-950 font-black px-2.5 py-0.5 rounded-full text-[8px] uppercase tracking-wider shadow-md">
+                    Música en Vivo
+                </div>
+                
+                <!-- Título Superior Directo -->
+                <h2 class="text-3xl font-black text-white mt-2 tracking-tight bg-gradient-to-r from-white via-slate-100 to-slate-300 bg-clip-text text-transparent fade-in-up">The Big Bang</h2>
+                <p class="text-yellow-400 font-bold text-[11px] uppercase tracking-widest mt-0.5 fade-in-up">Carranga Profesional</p>
+                
+                <!-- Logotipo Ubicado en el Centro Real de la Cabecera (Totalmente Seguro y Visible) -->
+                <div class="w-20 h-20 mx-auto bg-slate-950 rounded-full flex flex-col items-center justify-center border-4 wow-music p-1 my-3 shadow-lg" style="animation-delay: 100ms;">
+                    <i class="fas fa-music text-2xl text-yellow-400 animate-pulse"></i>
+                    <span class="font-black text-[7px] text-emerald-400 tracking-tighter mt-0.5 uppercase">Carranga</span>
+                </div>
+                
+                <!-- Mensaje Corto Institucional -->
+                <div class="bg-slate-950/70 rounded-xl p-2 border border-emerald-500/20 backdrop-blur-md max-w-[210px] mx-auto shadow-inner fade-in-up">
+                    <p class="text-[8px] uppercase text-emerald-400 tracking-widest font-bold">Eslogan</p>
+                    <p class="text-[11px] font-medium text-white mt-0.5">El show parrandero para tu evento</p>
+                </div>
+            </header>
+
+            <!-- CONTENIDO CENTRAL DE CONVERSIÓN -->
+            <div class="px-5 space-y-3.5 flex-grow flex flex-col justify-center mt-2">
+                
+                <!-- 3. BOTÓN PRINCIPAL CON COLOR OFICIAL DE WHATSAPP (#25D366) -->
+                <div class="fade-in-up">
+                    <a href="https://wa.me/573105591651?text=Hola%20The%20Big%20Bang%20Carranga,%20me%20gustaría%20cotizar%20una%20presentación%20musical%20para%20un%20evento" target="_blank" class="w-full flex items-center justify-center bg-[#25D366] text-white font-black py-3.5 px-4 rounded-xl text-center text-xs uppercase tracking-wider transition-transform transform active:scale-95 shadow-lg shadow-green-500/20 pulse-whatsapp">
+                        <i class="fab fa-whatsapp text-xl mr-2 text-white"></i>¡COTIZAR AGRUPACIÓN YA!
+                    </a>
+                </div>
+
+                <!-- CATEGORÍAS COMERCIALES DE EVENTOS EN CRISTAL (Glassmorphism) -->
+                <div class="grid grid-cols-2 gap-2 fade-in-up">
+                    <div class="bg-slate-800/40 border border-slate-700/30 p-2.5 rounded-xl flex items-center gap-2 shadow-md">
+                        <div class="w-6 h-6 bg-emerald-500/10 rounded-lg flex items-center justify-center text-emerald-400 text-xs flex-shrink-0 shadow-inner"><i class="fas fa-glass-cheers"></i></div>
+                        <span class="text-[10px] font-bold text-slate-300 leading-tight">Fiestas & Parrandas</span>
+                    </div>
+                    <div class="bg-slate-800/40 border border-slate-700/30 p-2.5 rounded-xl flex items-center gap-2 shadow-md">
+                        <div class="w-6 h-6 bg-emerald-500/10 rounded-lg flex items-center justify-center text-emerald-400 text-xs flex-shrink-0 shadow-inner"><i class="fas fa-cake-candles"></i></div>
+                        <span class="text-[10px] font-bold text-slate-300 leading-tight">Cumpleaños & Bodas</span>
+                    </div>
+                    <div class="bg-slate-800/40 border border-slate-700/30 p-2.5 rounded-xl flex items-center gap-2 shadow-md">
+                        <div class="w-6 h-6 bg-emerald-500/10 rounded-lg flex items-center justify-center text-emerald-400 text-xs flex-shrink-0 shadow-inner"><i class="fas fa-building"></i></div>
+                        <span class="text-[10px] font-bold text-slate-300 leading-tight">Eventos Empresa</span>
+                    </div>
+                    <div class="bg-slate-800/40 border border-slate-700/30 p-2.5 rounded-xl flex items-center gap-2 shadow-md">
+                        <div class="w-6 h-6 bg-emerald-500/10 rounded-lg flex items-center justify-center text-emerald-400 text-xs flex-shrink-0 shadow-inner"><i class="fas fa-guitar"></i></div>
+                        <span class="text-[10px] font-bold text-slate-300 leading-tight">Show Profesional</span>
+                    </div>
+                </div>
+
+                <!-- ENLACE TELEFÓNICO DIRECTO NATIVO -->
+                <div class="fade-in-up">
+                    <a href="tel:+573105591651" class="w-full bg-slate-800/80 border border-slate-700/60 py-2.5 px-2 rounded-xl flex items-center justify-center gap-1.5 text-[10px] font-bold text-slate-300 transition-colors hover:bg-slate-700">
+                        <i class="fas fa-phone text-emerald-500"></i> Llamar Directo: 310 5591651
+                    </a>
+                </div>
+            </div>
+            
+            <!-- ACCIÓN DE GUARDADO VCARD -->
+            <div class="px-5 mt-auto pt-2 fade-in-up">
+                <button id="btn-vcard" class="w-full bg-emerald-700 hover:bg-emerald-600 text-white font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 text-xs uppercase tracking-wider border border-emerald-600 shadow-md">
+                    <i class="fas fa-user-plus text-white"></i> GUARDAR CONTACTO EN AGENDA
+                </button>
+            </div>
+        </div>
+
+        <!-- 12. BARRA DE NAVEGACIÓN INFERIOR (ESTILO APP FIJA - CONTROL MODAL) -->
+        <nav class="absolute bottom-0 inset-x-0 bg-slate-950 border-t border-slate-800 px-2 py-2.5 flex justify-around items-center z-20 shadow-2xl">
+            <button id="nav-services" class="flex flex-col items-center justify-center text-slate-400 hover:text-emerald-500 w-12 transition-colors">
+                <i class="fas fa-compact-disc text-base"></i>
+                <span class="text-[9px] font-semibold mt-1">Portafolio</span>
+            </button>
+            <button id="nav-gallery" class="flex flex-col items-center justify-center text-slate-400 hover:text-emerald-500 w-12 transition-colors">
+                <i class="fas fa-photo-film text-base"></i>
+                <span class="text-[9px] font-semibold mt-1">Montaje</span>
+            </button>
+            <button id="nav-testimonials" class="flex flex-col items-center justify-center text-slate-400 hover:text-emerald-500 w-12 transition-colors">
+                <i class="fas fa-award text-base"></i>
+                <span class="text-[9px] font-semibold mt-1">Calidad</span>
+            </button>
+            <button id="nav-coverage" class="flex flex-col items-center justify-center text-slate-400 hover:text-emerald-500 w-12 transition-colors">
+                <i class="fas fa-map-location-dot text-base"></i>
+                <span class="text-[9px] font-semibold mt-1">Atención</span>
+            </button>
+            <button id="nav-qr" class="flex flex-col items-center justify-center text-slate-400 hover:text-emerald-500 w-12 transition-colors">
+                <i class="fas fa-qrcode text-base"></i>
+                <span class="text-[9px] font-semibold mt-1">QR</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- ================= MODALES INTERACTIVOS (ARQUITECTURA FIJA) ================= -->
+
+    <!-- MODAL DE SERVICIOS -->
+    <div id="modal-services" class="modal-overlay">
+        <div class="modal-content overflow-hidden">
+            <div class="bg-emerald-800 text-white p-4 font-bold text-xs uppercase tracking-wider flex justify-between items-center">
+                <span><i class="fas fa-compact-disc mr-2"></i>Show En Vivo</span>
+                <button class="close-modal text-lg font-bold px-2 text-white/80 hover:text-white">&times;</button>
+            </div>
+            <div class="p-4 max-h-[60vh] overflow-y-auto space-y-3 text-slate-800">
+                <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+                    <h4 class="font-bold text-emerald-950 text-xs uppercase">Presentación Parrandera</h4>
+                    <p class="text-[11px] text-slate-600 mt-1 leading-normal">Repertorio musical bailable de carranga tradicional y fusiones modernas con excelente puesta en escena, ideal para prender la fiesta de principio a fin.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE GALERÍA -->
+    <div id="modal-gallery" class="modal-overlay">
+        <div class="modal-content overflow-hidden">
+            <div class="bg-emerald-800 text-white p-4 font-bold text-xs uppercase tracking-wider flex justify-between items-center">
+                <span><i class="fas fa-photo-film mr-2"></i>Evidencia del Show</span>
+                <button class="close-modal text-lg font-bold px-2 text-white/80 hover:text-white">&times;</button>
+            </div>
+            <div class="p-4 space-y-3">
+                <div class="rounded-xl overflow-hidden bg-slate-100 border border-slate-200">
+                    <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=400" alt="Concierto" class="w-full h-32 object-cover">
+                    <p class="text-[10px] p-2 text-slate-600 text-center font-medium">Formato instrumental completo con amplificación profesional para garantizar el mejor sonido.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE TESTIMONIOS -->
+    <div id="modal-testimonials" class="modal-overlay">
+        <div class="modal-content overflow-hidden">
+            <div class="bg-emerald-800 text-white p-4 font-bold text-xs uppercase tracking-wider flex justify-between items-center">
+                <span><i class="fas fa-award mr-2"></i>Garantía del Show</span>
+                <button class="close-modal text-lg font-bold px-2 text-white/80 hover:text-white">&times;</button>
+            </div>
+            <div class="p-4 space-y-3 text-slate-800">
+                <div class="bg-emerald-50/50 p-3 rounded-xl border border-emerald-100">
+                    <h4 class="font-bold text-emerald-900 text-xs uppercase">Cumplimiento & Calidad</h4>
+                    <p class="text-[11px] text-slate-700 italic leading-relaxed mt-1">Garantizamos puntualidad, uniformidad, excelente presentación personal e interacción profesional con los invitados de tu evento.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE COBERTURA -->
+    <div id="modal-coverage" class="modal-overlay">
+        <div class="modal-content overflow-hidden">
+            <div class="bg-emerald-800 text-white p-4 font-bold text-xs uppercase tracking-wider flex justify-between items-center">
+                <span><i class="fas fa-map-location-dot mr-2"></i>Zonas de Atención</span>
+                <button class="close-modal text-lg font-bold px-2 text-white/80 hover:text-white">&times;</button>
+            </div>
+            <div class="p-4 space-y-3 text-slate-800 text-[11px]">
+                <div class="p-3 bg-slate-50 rounded-xl border flex items-start gap-2.5">
+                    <i class="fas fa-map-pin text-emerald-700 text-sm mt-0.5"></i>
+                    <div>
+                        <h5 class="font-bold text-slate-800">Disponibilidad de Viaje</h5>
+                        <p class="text-[10px] text-slate-500 mt-0.5">Atención en toda la región y traslados a nivel nacional. Consulta condiciones de viáticos por WhatsApp.</p>
+                    </div>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-xl border space-y-1.5 font-medium">
+                    <div class="flex justify-between border-b pb-1"><span>Contrataciones:</span><span class="font-bold text-emerald-700">Abierto Todos los Días</span></div>
+                    <div class="flex justify-between"><span>Tipo de Show:</span><span class="text-slate-900 font-bold">100% Familiar o Institucional</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE CÓDIGO QR -->
+    <div id="modal-qr" class="modal-overlay">
+        <div class="modal-content overflow-hidden">
+            <div class="bg-emerald-800 text-white p-4 font-bold text-xs uppercase tracking-wider flex justify-between items-center">
+                <span><i class="fas fa-qrcode mr-2"></i>Compartir Perfil</span>
+                <button class="close-modal text-lg font-bold px-2 text-white/80 hover:text-white">&times;</button>
+            </div>
+            <div class="p-5 text-center">
+                <div id="qrcode" class="flex justify-center p-2.5 bg-white border border-slate-200 rounded-xl inline-block mx-auto shadow-sm"></div>
+                <p class="text-[10px] text-slate-500 mt-3 px-1 leading-normal">Escanea este código desde otro celular para abrir al instante la Tarjeta Digital Profesional de The Big Bang Carranga.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Desvanecimiento del Splash Screen
+            setTimeout(() => {
+                const splash = document.getElementById('splash');
+                if(splash) {
+                    splash.style.opacity = '0';
+                    setTimeout(() => splash.style.display = 'none', 400);
+                }
+            }, 1000);
+
+            // Controlador de Modales Modular
+            const setupAppModal = (triggerId, modalId) => {
+                const trigger = document.getElementById(triggerId);
+                const modal = document.getElementById(modalId);
+                if (!trigger || !modal) return;
+                
+                trigger.addEventListener('click', (e) => { e.preventDefault(); modal.classList.add('active'); });
+                modal.querySelector('.close-modal').addEventListener('click', () => modal.classList.remove('active'));
+                modal.addEventListener('click', (e) => { if(e.target === modal) modal.classList.remove('active'); });
+            };
+
+            // URL Dinámica Nativa del proyecto
+            const urlRealProduccion = window.location.href;
+
+            // Inicializar disparadores táctiles de la barra de navegación inferior
+            setupAppModal('nav-services', 'modal-services');
+            setupAppModal('nav-gallery', 'modal-gallery');
+            setupAppModal('nav-testimonials', 'modal-testimonials');
+            setupAppModal('nav-coverage', 'modal-coverage');
+            setupAppModal('nav-qr', 'modal-qr');
+
+            // Generador de QR dinámico
+            const qrBox = document.getElementById("qrcode");
+            if(qrBox) {
+                new QRCode(qrBox, {
+                    text: urlRealProduccion,
+                    width: 144,
+                    height: 144,
+                    colorDark : "#047857",
+                    colorLight : "#ffffff",
+                    correctLevel : QRCode.CorrectLevel.H
+                });
+            }
+
+            // Descarga de tarjeta vCard corporativa
+            const btnVcard = document.getElementById('btn-vcard');
+            if (btnVcard) {
+                btnVcard.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const vCardData = `BEGIN:VCARD\nVERSION:3.0\nFN:The Big Bang Carranga\nORG:The Big Bang Carranga\nTEL;TYPE=CELL,VOICE;PREF=1:+573105591651\nNOTE:Agrupación musical de Carranga Profesional para todo tipo de fiestas y eventos.\nURL:${urlRealProduccion}\nEND:VCARD`;
+                    const blob = new Blob([vCardData], { type: 'text/vcard;charset=utf-8' });
+                    const url = URL.createObjectURL(blob);
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.download = 'The_Big_Bang_Carranga.vcf';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    URL.revokeObjectURL(url);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
