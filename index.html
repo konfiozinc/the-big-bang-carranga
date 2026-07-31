@@ -1,313 +1,448 @@
 <!DOCTYPE html>
-<html lang="es" class="h-full bg-slate-950 select-none">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <meta name="theme-color" content="#047857"/>
-    <title>The Big Bang Carranga - Tarjeta Digital Profesional</title>
-    
-    <!-- Tailwind CSS & Iconografía Premium -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>The Big Bang Carranga - Tarjeta Digital Pro</title>
+
+    <!-- Script de QR dinámico -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-        .fade-in-up { opacity: 0; animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
         
-        /* Efecto de Brillo para el Logotipo Musical (Wow Effect) */
-        @keyframes musicalGlow {
-            0%, 100% { border-color: rgba(234, 179, 8, 0.4); box-shadow: 0 0 12px rgba(4, 120, 87, 0.3); }
-            50% { border-color: rgba(4, 120, 87, 0.8); box-shadow: 0 0 20px rgba(234, 179, 8, 0.5); }
+        * { font-family: 'Inter', system-ui, -apple-system, sans-serif; box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: #020617; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 10px; }
+        
+        /* Chasis Fijo Móvil */
+        .card-container {
+            width: 100%;
+            max-width: 380px;
+            height: 100vh;
+            max-height: 750px;
+            background: #0f172a;
+            border-radius: 28px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9);
+            border: 1px solid #047857;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
-        .wow-music { animation: musicalGlow 4s infinite ease-in-out; }
-        
-        /* Efecto de pulso controlado para el botón oficial de WhatsApp */
-        @keyframes whatsappPulse {
-            0%, 100% { transform: scale(1); box-shadow: 0 8px 20px -4px rgba(37, 211, 102, 0.4); }
-            50% { transform: scale(1.02); box-shadow: 0 14px 25px -4px rgba(37, 211, 102, 0.6); }
+
+        /* Header Dinámico */
+        .card-header {
+            background: linear-gradient(180deg, #065f46 0%, #022c22 100%);
+            padding: 24px 16px 20px 16px;
+            text-align: center;
+            border-bottom-left-radius: 32px;
+            border-bottom-right-radius: 32px;
+            position: relative;
+            border-bottom: 1px solid rgba(16, 185, 129, 0.3);
         }
-        .pulse-whatsapp { animation: whatsappPulse 2s infinite ease-in-out; }
-        
-        .modal-overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(8px); z-index: 50; display: flex; align-items: center; justify-content: center; padding: 20px; opacity: 0; visibility: hidden; transition: opacity 0.2s ease, visibility 0.2s ease; }
-        .modal-overlay.active { opacity: 1; visibility: visible; }
-        .modal-content { background: #ffffff; border-radius: 28px; width: 100%; max-w: 326px; transform: scale(0.96); transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1); border: 1px solid rgba(255,255,255,0.1); }
-        .modal-overlay.active .modal-content { transform: scale(1); }
-        .app-container { height: 100vh; height: 100dvh; }
+
+        .badge-live {
+            position: absolute;
+            top: 12px;
+            right: 14px;
+            background: #facc15;
+            color: #022c22;
+            font-size: 8px;
+            font-weight: 900;
+            padding: 3px 8px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .avatar-music {
+            width: 72px;
+            height: 72px;
+            background: #020617;
+            border-radius: 50%;
+            margin: 10px auto 8px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #facc15;
+            box-shadow: 0 0 15px rgba(4, 120, 87, 0.6);
+        }
+
+        /* Títulos */
+        .title-main { font-size: 24px; font-weight: 900; color: #ffffff; letter-spacing: -0.5px; }
+        .title-sub { font-size: 11px; font-weight: 800; color: #facc15; text-transform: uppercase; letter-spacing: 1px; margin-top: 1px; }
+
+        .slogan-box {
+            background: rgba(2, 6, 23, 0.7);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 12px;
+            padding: 6px 12px;
+            margin: 8px auto 0 auto;
+            max-width: 220px;
+        }
+        .slogan-tag { font-size: 7px; text-transform: uppercase; color: #34d399; font-weight: 800; letter-spacing: 1px; }
+        .slogan-text { font-size: 10px; font-weight: 600; color: #ffffff; }
+
+        /* Cuerpo de Acciones */
+        .content-body {
+            padding: 12px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            overflow-y: auto;
+        }
+
+        /* Botón WhatsApp Oficial */
+        .btn-whatsapp {
+            background-color: #25d366;
+            color: white;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+            padding: 12px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        /* Grilla Categorías */
+        .grid-events {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+        .event-card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(51, 65, 85, 0.6);
+            padding: 8px 10px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .event-icon {
+            width: 24px;
+            height: 24px;
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .event-text { font-size: 9px; font-weight: 700; color: #cbd5e1; line-height: 1.2; }
+
+        .btn-phone {
+            background: #1e293b;
+            color: #cbd5e1;
+            border: 1px solid #334155;
+            padding: 10px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            text-decoration: none;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .btn-vcard {
+            background: #047857;
+            color: white;
+            border: 1px solid #10b981;
+            padding: 11px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            width: 100%;
+        }
+
+        /* Barra Inferior */
+        .bottom-nav {
+            background: #020617;
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 4px 6px 4px;
+            border-top: 1px solid #1e293b;
+        }
+        .nav-item {
+            color: #94a3b8;
+            background: none;
+            border: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 8px;
+            font-weight: 600;
+            gap: 3px;
+            cursor: pointer;
+        }
+
+        /* Pie de Marca Fijo Konfío Zinc */
+        .brand-footer {
+            background: #020617;
+            color: #475569;
+            font-size: 8px;
+            text-align: center;
+            padding-bottom: 6px;
+            padding-top: 2px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Modales */
+        .modal-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(2, 6, 23, 0.85);
+            backdrop-filter: blur(4px);
+            z-index: 50;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-box {
+            background: #0f172a;
+            border: 1px solid #047857;
+            border-radius: 20px;
+            width: 100%;
+            max-height: 80vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            color: white;
+        }
+        .modal-header {
+            background: #047857;
+            padding: 12px 16px;
+            font-weight: 800;
+            font-size: 11px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-transform: uppercase;
+        }
+        .modal-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            font-weight: 800;
+            cursor: pointer;
+        }
     </style>
 </head>
-<body class="bg-slate-950 w-full flex justify-center items-center overflow-hidden">
+<body>
 
-    <!-- 1. SPLASH SCREEN (Transición de Marca) -->
-    <div id="splash" class="flex flex-col items-center justify-center">
-        <div class="text-center animate-pulse">
-            <div class="w-20 h-20 mx-auto bg-gradient-to-tr from-emerald-600 to-emerald-500 rounded-full flex items-center justify-center shadow-2xl border-4 border-white mb-3">
-                <i class="fas fa-guitar text-3xl text-white"></i>
+    <div class="card-container">
+        <div>
+            <!-- Header -->
+            <div class="card-header">
+                <span class="badge-live">MÚSICA EN VIVO</span>
+                
+                <h1 class="title-main">The Big Bang</h1>
+                <div class="title-sub">Carranga Profesional</div>
+
+                <div class="avatar-music">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#facc15" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                    <span style="font-size: 7px; font-weight: 900; color: #34d399; margin-top: 2px;">SHOW</span>
+                </div>
+                
+                <div class="slogan-box">
+                    <div class="slogan-tag">ESLOGAN</div>
+                    <div class="slogan-text">El show parrandero para tu evento</div>
+                </div>
             </div>
-            <h1 class="text-2xl font-black text-white tracking-wider">THE BIG BANG</h1>
-            <p class="text-yellow-400 text-[10px] font-bold uppercase tracking-widest mt-1">Carranga Show</p>
-        </div>
-    </div>
 
-    <!-- APP CONTAINER FIJO (ALTO DE PANTALLA CONTENIDO - SIN SCROLL WEB) -->
-    <div class="app-container w-full max-w-[380px] bg-slate-900 relative flex flex-col justify-between overflow-hidden shadow-2xl">
-        
-        <!-- CUERPO DE LA APP -->
-        <div class="flex-grow flex flex-col justify-between pb-28 overflow-y-auto">
+            <!-- Cuerpo Interactivo -->
+            <div class="content-body">
+                
+                <a href="https://wa.me/573105591651?text=Hola%20The%20Big%20Bang%20Carranga,%20me%20gustar%C3%ADa%20cotizar%20una%20presentaci%C3%B3n%20musical." target="_blank" class="btn-whatsapp">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                    ¡Cotizar Agrupación Ya!
+                </a>
+
+                <div class="grid-events">
+                    <div class="event-card">
+                        <div class="event-icon">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+                        </div>
+                        <span class="event-text">Fiestas & Parrandas</span>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-icon">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        </div>
+                        <span class="event-text">Cumpleaños & Bodas</span>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-icon">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg>
+                        </div>
+                        <span class="event-text">Eventos Empresa</span>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-icon">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+                        </div>
+                        <span class="event-text">Show Profesional</span>
+                    </div>
+                </div>
+
+                <a href="tel:+573105591651" class="btn-phone">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    Llamar Directo: 310 5591651
+                </a>
+
+                <button id="btn-vcard" class="btn-vcard">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" x2="19" y1="8" y2="14"/><line x1="22" x2="16" y1="11" y2="11"/></svg>
+                    Guardar Contacto en Agenda
+                </button>
+
+            </div>
+        </div>
+
+        <!-- Navegación Inferior & Firma de Marca -->
+        <div>
+            <div class="bottom-nav">
+                <button class="nav-item" onclick="openModal('modal-services')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+                    <span>Show</span>
+                </button>
+                <button class="nav-item" onclick="openModal('modal-gallery')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+                    <span>Montaje</span>
+                </button>
+                <button class="nav-item" onclick="openModal('modal-guarantee')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg>
+                    <span>Garantía</span>
+                </button>
+                <button class="nav-item" onclick="openModal('modal-coverage')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <span>Cobertura</span>
+                </button>
+                <button class="nav-item" onclick="openModal('modal-qr')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M21 21v.01"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/><path d="M3 12h.01"/><path d="M12 3h.01"/><path d="M12 16v.01"/><path d="M16 12h1"/><path d="M21 12v.01"/><path d="M12 21v-1"/></svg>
+                    <span>QR</span>
+                </button>
+            </div>
             
-            <!-- 2. PORTADA & HERO (Ubicación de Seguridad Central) -->
-            <header class="relative bg-gradient-to-b from-emerald-800 via-emerald-950 to-slate-900 pt-6 pb-6 px-5 text-center text-white rounded-b-[40px] shadow-2xl flex-shrink-0 border-b border-emerald-700/20">
-                <div class="absolute top-3 right-4 bg-yellow-400 text-emerald-950 font-black px-2.5 py-0.5 rounded-full text-[8px] uppercase tracking-wider shadow-md">
-                    Música en Vivo
-                </div>
-                
-                <!-- Título Superior Directo -->
-                <h2 class="text-3xl font-black text-white mt-2 tracking-tight bg-gradient-to-r from-white via-slate-100 to-slate-300 bg-clip-text text-transparent fade-in-up">The Big Bang</h2>
-                <p class="text-yellow-400 font-bold text-[11px] uppercase tracking-widest mt-0.5 fade-in-up">Carranga Profesional</p>
-                
-                <!-- Logotipo Ubicado en el Centro Real de la Cabecera (Totalmente Seguro y Visible) -->
-                <div class="w-20 h-20 mx-auto bg-slate-950 rounded-full flex flex-col items-center justify-center border-4 wow-music p-1 my-3 shadow-lg" style="animation-delay: 100ms;">
-                    <i class="fas fa-music text-2xl text-yellow-400 animate-pulse"></i>
-                    <span class="font-black text-[7px] text-emerald-400 tracking-tighter mt-0.5 uppercase">Carranga</span>
-                </div>
-                
-                <!-- Mensaje Corto Institucional -->
-                <div class="bg-slate-950/70 rounded-xl p-2 border border-emerald-500/20 backdrop-blur-md max-w-[210px] mx-auto shadow-inner fade-in-up">
-                    <p class="text-[8px] uppercase text-emerald-400 tracking-widest font-bold">Eslogan</p>
-                    <p class="text-[11px] font-medium text-white mt-0.5">El show parrandero para tu evento</p>
-                </div>
-            </header>
-
-            <!-- CONTENIDO CENTRAL DE CONVERSIÓN -->
-            <div class="px-5 space-y-3.5 flex-grow flex flex-col justify-center mt-2">
-                
-                <!-- 3. BOTÓN PRINCIPAL CON COLOR OFICIAL DE WHATSAPP (#25D366) -->
-                <div class="fade-in-up">
-                    <a href="https://wa.me/573105591651?text=Hola%20The%20Big%20Bang%20Carranga,%20me%20gustaría%20cotizar%20una%20presentación%20musical%20para%20un%20evento" target="_blank" class="w-full flex items-center justify-center bg-[#25D366] text-white font-black py-3.5 px-4 rounded-xl text-center text-xs uppercase tracking-wider transition-transform transform active:scale-95 shadow-lg shadow-green-500/20 pulse-whatsapp">
-                        <i class="fab fa-whatsapp text-xl mr-2 text-white"></i>¡COTIZAR AGRUPACIÓN YA!
-                    </a>
-                </div>
-
-                <!-- CATEGORÍAS COMERCIALES DE EVENTOS EN CRISTAL (Glassmorphism) -->
-                <div class="grid grid-cols-2 gap-2 fade-in-up">
-                    <div class="bg-slate-800/40 border border-slate-700/30 p-2.5 rounded-xl flex items-center gap-2 shadow-md">
-                        <div class="w-6 h-6 bg-emerald-500/10 rounded-lg flex items-center justify-center text-emerald-400 text-xs flex-shrink-0 shadow-inner"><i class="fas fa-glass-cheers"></i></div>
-                        <span class="text-[10px] font-bold text-slate-300 leading-tight">Fiestas & Parrandas</span>
-                    </div>
-                    <div class="bg-slate-800/40 border border-slate-700/30 p-2.5 rounded-xl flex items-center gap-2 shadow-md">
-                        <div class="w-6 h-6 bg-emerald-500/10 rounded-lg flex items-center justify-center text-emerald-400 text-xs flex-shrink-0 shadow-inner"><i class="fas fa-cake-candles"></i></div>
-                        <span class="text-[10px] font-bold text-slate-300 leading-tight">Cumpleaños & Bodas</span>
-                    </div>
-                    <div class="bg-slate-800/40 border border-slate-700/30 p-2.5 rounded-xl flex items-center gap-2 shadow-md">
-                        <div class="w-6 h-6 bg-emerald-500/10 rounded-lg flex items-center justify-center text-emerald-400 text-xs flex-shrink-0 shadow-inner"><i class="fas fa-building"></i></div>
-                        <span class="text-[10px] font-bold text-slate-300 leading-tight">Eventos Empresa</span>
-                    </div>
-                    <div class="bg-slate-800/40 border border-slate-700/30 p-2.5 rounded-xl flex items-center gap-2 shadow-md">
-                        <div class="w-6 h-6 bg-emerald-500/10 rounded-lg flex items-center justify-center text-emerald-400 text-xs flex-shrink-0 shadow-inner"><i class="fas fa-guitar"></i></div>
-                        <span class="text-[10px] font-bold text-slate-300 leading-tight">Show Profesional</span>
-                    </div>
-                </div>
-
-                <!-- ENLACE TELEFÓNICO DIRECTO NATIVO -->
-                <div class="fade-in-up">
-                    <a href="tel:+573105591651" class="w-full bg-slate-800/80 border border-slate-700/60 py-2.5 px-2 rounded-xl flex items-center justify-center gap-1.5 text-[10px] font-bold text-slate-300 transition-colors hover:bg-slate-700">
-                        <i class="fas fa-phone text-emerald-500"></i> Llamar Directo: 310 5591651
-                    </a>
-                </div>
-            </div>
-            
-            <!-- ACCIÓN DE GUARDADO VCARD -->
-            <div class="px-5 mt-auto pt-2 fade-in-up">
-                <button id="btn-vcard" class="w-full bg-emerald-700 hover:bg-emerald-600 text-white font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 text-xs uppercase tracking-wider border border-emerald-600 shadow-md">
-                    <i class="fas fa-user-plus text-white"></i> GUARDAR CONTACTO EN AGENDA
-                </button>
+            <div class="brand-footer">
+                CREADO POR <strong style="color: #34d399;">KONFÍO ZINC</strong> — TODOS LOS DERECHOS RESERVADOS
             </div>
         </div>
 
-        <!-- 12. BARRA DE NAVEGACIÓN INFERIOR CON TU SELLO INSTITUCIONAL INYECTADO -->
-        <div class="absolute bottom-0 inset-x-0 bg-slate-950 border-t border-slate-800 z-20 flex flex-col shadow-2xl">
-            <nav class="px-2 py-2 flex justify-around items-center">
-                <button id="nav-services" class="flex flex-col items-center justify-center text-slate-400 hover:text-emerald-500 w-12 transition-colors">
-                    <i class="fas fa-compact-disc text-base"></i>
-                    <span class="text-[9px] font-semibold mt-1">Portafolio</span>
-                </button>
-                <button id="nav-gallery" class="flex flex-col items-center justify-center text-slate-400 hover:text-emerald-500 w-12 transition-colors">
-                    <i class="fas fa-photo-film text-base"></i>
-                    <span class="text-[9px] font-semibold mt-1">Montaje</span>
-                </button>
-                <button id="nav-testimonials" class="flex flex-col items-center justify-center text-slate-400 hover:text-emerald-500 w-12 transition-colors">
-                    <i class="fas fa-award text-base"></i>
-                    <span class="text-[9px] font-semibold mt-1">Calidad</span>
-                </button>
-                <button id="nav-coverage" class="flex flex-col items-center justify-center text-slate-400 hover:text-emerald-500 w-12 transition-colors">
-                    <i class="fas fa-map-location-dot text-base"></i>
-                    <span class="text-[9px] font-semibold mt-1">Atención</span>
-                </button>
-                <button id="nav-qr" class="flex flex-col items-center justify-center text-slate-400 hover:text-emerald-500 w-12 transition-colors">
-                    <i class="fas fa-qrcode text-base"></i>
-                    <span class="text-[9px] font-semibold mt-1">QR</span>
-                </button>
-            </nav>
-            <!-- MARCA OFICIAL ADICIONADA -->
-            <div class="text-center text-[8px] tracking-wider text-slate-500 font-medium bg-slate-950 pb-1.5 uppercase">
-                Creado por KONFÍO ZINC — Todos los derechos reservados
-            </div>
-        </div>
-    </div>
-
-    <!-- ================= MODALES INTERACTIVOS (ARQUITECTURA FIJA) ================= -->
-
-    <!-- MODAL DE SERVICIOS -->
-    <div id="modal-services" class="modal-overlay">
-        <div class="modal-content overflow-hidden">
-            <div class="bg-emerald-800 text-white p-4 font-bold text-xs uppercase tracking-wider flex justify-between items-center">
-                <span><i class="fas fa-compact-disc mr-2"></i>Show En Vivo</span>
-                <button class="close-modal text-lg font-bold px-2 text-white/80 hover:text-white">&times;</button>
-            </div>
-            <div class="p-4 max-h-[60vh] overflow-y-auto space-y-3 text-slate-800">
-                <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
-                    <h4 class="font-bold text-emerald-950 text-xs uppercase">Presentación Parrandera</h4>
-                    <p class="text-[11px] text-slate-600 mt-1 leading-normal">Repertorio musical bailable de carranga tradicional y fusiones modernas con excelente puesta en escena, ideal para prender la fiesta de principio a fin.</p>
+        <!-- MODALES -->
+        <div id="modal-services" class="modal-overlay" onclick="closeModal('modal-services')">
+            <div class="modal-box" onclick="event.stopPropagation()">
+                <div class="modal-header">
+                    <span>Show En Vivo</span>
+                    <button class="modal-close" onclick="closeModal('modal-services')">✕</button>
+                </div>
+                <div style="padding: 16px; font-size: 11px; line-height: 1.5; color: #cbd5e1;">
+                    <strong style="color: #34d399; font-size: 12px;">Presentación Parrandera Completa</strong><br/><br/>
+                    Repertorio musical bailable de carranga tradicional y fusiones modernas con excelente puesta en escena, ideal para prender la fiesta de principio a fin.
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- MODAL DE GALERÍA -->
-    <div id="modal-gallery" class="modal-overlay">
-        <div class="modal-content overflow-hidden">
-            <div class="bg-emerald-800 text-white p-4 font-bold text-xs uppercase tracking-wider flex justify-between items-center">
-                <span><i class="fas fa-photo-film mr-2"></i>Evidencia del Show</span>
-                <button class="close-modal text-lg font-bold px-2 text-white/80 hover:text-white">&times;</button>
-            </div>
-            <div class="p-4 space-y-3">
-                <div class="rounded-xl overflow-hidden bg-slate-100 border border-slate-200">
-                    <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=400" alt="Concierto" class="w-full h-32 object-cover">
-                    <p class="text-[10px] p-2 text-slate-600 text-center font-medium">Formato instrumental completo con amplificación profesional para garantizar el mejor sonido.</p>
+        <div id="modal-gallery" class="modal-overlay" onclick="closeModal('modal-gallery')">
+            <div class="modal-box" onclick="event.stopPropagation()">
+                <div class="modal-header">
+                    <span>Montaje Profesional</span>
+                    <button class="modal-close" onclick="closeModal('modal-gallery')">✕</button>
+                </div>
+                <div style="padding: 16px; text-align: center;">
+                    <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=400" alt="Concierto" style="width: 100%; border-radius: 12px; height: 130px; object-fit: cover;">
+                    <p style="font-size: 10px; color: #94a3b8; margin-top: 8px;">Formato instrumental completo con amplificación profesional para garantizar el mejor sonido.</p>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- MODAL DE TESTIMONIOS -->
-    <div id="modal-testimonials" class="modal-overlay">
-        <div class="modal-content overflow-hidden">
-            <div class="bg-emerald-800 text-white p-4 font-bold text-xs uppercase tracking-wider flex justify-between items-center">
-                <span><i class="fas fa-award mr-2"></i>Garantía del Show</span>
-                <button class="close-modal text-lg font-bold px-2 text-white/80 hover:text-white">&times;</button>
-            </div>
-            <div class="p-4 space-y-3 text-slate-800">
-                <div class="bg-emerald-50/50 p-3 rounded-xl border border-emerald-100">
-                    <h4 class="font-bold text-emerald-900 text-xs uppercase">Cumplimiento & Calidad</h4>
-                    <p class="text-[11px] text-slate-700 italic leading-relaxed mt-1">Garantizamos puntualidad, uniformidad, excelente presentación personal e interacción profesional con los invitados de tu evento.</p>
+        <div id="modal-guarantee" class="modal-overlay" onclick="closeModal('modal-guarantee')">
+            <div class="modal-box" onclick="event.stopPropagation()">
+                <div class="modal-header">
+                    <span>Garantía & Cumplimiento</span>
+                    <button class="modal-close" onclick="closeModal('modal-guarantee')">✕</button>
+                </div>
+                <div style="padding: 16px; font-size: 11px; line-height: 1.5; color: #cbd5e1;">
+                    Garantizamos puntualidad, uniformidad, excelente presentación personal e interacción profesional con todos los invitados de tu evento.
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- MODAL DE COBERTURA -->
-    <div id="modal-coverage" class="modal-overlay">
-        <div class="modal-content overflow-hidden">
-            <div class="bg-emerald-800 text-white p-4 font-bold text-xs uppercase tracking-wider flex justify-between items-center">
-                <span><i class="fas fa-map-location-dot mr-2"></i>Zonas de Atención</span>
-                <button class="close-modal text-lg font-bold px-2 text-white/80 hover:text-white">&times;</button>
-            </div>
-            <div class="p-4 space-y-3 text-slate-800 text-[11px]">
-                <div class="p-3 bg-slate-50 rounded-xl border flex items-start gap-2.5">
-                    <i class="fas fa-map-pin text-emerald-700 text-sm mt-0.5"></i>
-                    <div>
-                        <h5 class="font-bold text-slate-800">Disponibilidad de Viaje</h5>
-                        <p class="text-[10px] text-slate-500 mt-0.5">Atención en toda la región y traslados a nivel nacional. Consulta condiciones de viáticos por WhatsApp.</p>
-                    </div>
+        <div id="modal-coverage" class="modal-overlay" onclick="closeModal('modal-coverage')">
+            <div class="modal-box" onclick="event.stopPropagation()">
+                <div class="modal-header">
+                    <span>Zonas de Atención</span>
+                    <button class="modal-close" onclick="closeModal('modal-coverage')">✕</button>
                 </div>
-                <div class="p-3 bg-slate-50 rounded-xl border space-y-1.5 font-medium">
-                    <div class="flex justify-between border-b pb-1"><span>Contrataciones:</span><span class="font-bold text-emerald-700">Abierto Todos los Días</span></div>
-                    <div class="flex justify-between"><span>Tipo de Show:</span><span class="text-slate-900 font-bold">100% Familiar o Institucional</span></div>
+                <div style="padding: 16px; font-size: 11px; color: #cbd5e1; line-height: 1.5;">
+                    <strong style="color: #facc15;">Disponibilidad de Viaje:</strong><br/>
+                    Atención en toda la región y traslados a nivel nacional. Consulta condiciones de viáticos directamente vía WhatsApp.
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- MODAL DE CÓDIGO QR -->
-    <div id="modal-qr" class="modal-overlay">
-        <div class="modal-content overflow-hidden">
-            <div class="bg-emerald-800 text-white p-4 font-bold text-xs uppercase tracking-wider flex justify-between items-center">
-                <span><i class="fas fa-qrcode mr-2"></i>Compartir Perfil</span>
-                <button class="close-modal text-lg font-bold px-2 text-white/80 hover:text-white">&times;</button>
-            </div>
-            <div class="p-5 text-center">
-                <div id="qrcode" class="flex justify-center p-2.5 bg-white border border-slate-200 rounded-xl inline-block mx-auto shadow-sm"></div>
-                <p class="text-[10px] text-slate-500 mt-3 px-1 leading-normal">Escanea este código desde otro celular para abrir al instante la Tarjeta Digital Profesional de The Big Bang Carranga.</p>
+        <div id="modal-qr" class="modal-overlay" onclick="closeModal('modal-qr')">
+            <div class="modal-box" onclick="event.stopPropagation()" style="text-align: center; padding: 16px;">
+                <div class="modal-header" style="margin: -16px -16px 16px -16px;">
+                    <span>Compartir Tarjeta</span>
+                    <button class="modal-close" onclick="closeModal('modal-qr')">✕</button>
+                </div>
+                <div id="qrcode" style="display: flex; justify-content: center; background: white; padding: 10px; border-radius: 12px; width: fit-content; margin: 0 auto;"></div>
+                <p style="font-size: 10px; color: #94a3b8; margin-top: 10px;">Escanea este código desde otro celular para abrir al instante la tarjeta digital.</p>
             </div>
         </div>
+
     </div>
 
     <script>
+        function openModal(id) { document.getElementById(id).classList.add('active'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
         document.addEventListener('DOMContentLoaded', () => {
-            // Desvanecimiento del Splash Screen
-            setTimeout(() => {
-                const splash = document.getElementById('splash');
-                if(splash) {
-                    splash.style.opacity = '0';
-                    setTimeout(() => splash.style.display = 'none', 400);
-                }
-            }, 1000);
-
-            // Controlador de Modales Modular
-            const setupAppModal = (triggerId, modalId) => {
-                const trigger = document.getElementById(triggerId);
-                const modal = document.getElementById(modalId);
-                if (!trigger || !modal) return;
-                
-                trigger.addEventListener('click', (e) => { e.preventDefault(); modal.classList.add('active'); });
-                modal.querySelector('.close-modal').addEventListener('click', () => modal.classList.remove('active'));
-                modal.addEventListener('click', (e) => { if(e.target === modal) modal.classList.remove('active'); });
-            };
-
-            // URL Dinámica Nativa del proyecto
-            const urlRealProduccion = window.location.href;
-
-            // Inicializar disparadores táctiles de la barra de navegación inferior
-            setupAppModal('nav-services', 'modal-services');
-            setupAppModal('nav-gallery', 'modal-gallery');
-            setupAppModal('nav-testimonials', 'modal-testimonials');
-            setupAppModal('nav-coverage', 'modal-coverage');
-            setupAppModal('nav-qr', 'modal-qr');
-
-            // Generador de QR dinámico
             const qrBox = document.getElementById("qrcode");
             if(qrBox) {
                 new QRCode(qrBox, {
-                    text: urlRealProduccion,
-                    width: 144,
-                    height: 144,
+                    text: window.location.href,
+                    width: 130,
+                    height: 130,
                     colorDark : "#047857",
-                    colorLight : "#ffffff",
-                    correctLevel : QRCode.CorrectLevel.H
+                    colorLight : "#ffffff"
                 });
             }
 
-            // Descarga de tarjeta vCard corporativa
-            const btnVcard = document.getElementById('btn-vcard');
-            if (btnVcard) {
-                btnVcard.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const vCardData = `BEGIN:VCARD\nVERSION:3.0\nFN:The Big Bang Carranga\nORG:The Big Bang Carranga\nTEL;TYPE=CELL,VOICE;PREF=1:+573105591651\nNOTE:Agrupación musical de Carranga Profesional para todo tipo de fiestas y eventos.\nURL:${urlRealProduccion}\nEND:VCARD`;
-                    const blob = new Blob([vCardData], { type: 'text/vcard;charset=utf-8' });
-                    const url = URL.createObjectURL(blob);
-                    const link = document.createElement('a');
-                    link.href = url;
-                    link.download = 'The_Big_Bang_Carranga.vcf';
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                    URL.revokeObjectURL(url);
-                });
-            }
+            document.getElementById('btn-vcard').addEventListener('click', () => {
+                const vCardData = `BEGIN:VCARD\nVERSION:3.0\nFN:The Big Bang Carranga\nORG:The Big Bang Carranga\nTEL;TYPE=CELL:+573105591651\nNOTE:Agrupación musical de Carranga Profesional para todo tipo de eventos.\nEND:VCARD`;
+                const blob = new Blob([vCardData], { type: 'text/vcard;charset=utf-8' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'The_Big_Bang_Carranga.vcf';
+                a.click();
+                URL.revokeObjectURL(url);
+            });
         });
     </script>
 </body>
