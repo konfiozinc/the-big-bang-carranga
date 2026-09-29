@@ -1,0 +1,16 @@
+{
+  "name": "The Big Bang Carranga",
+  "short_name": "Big Bang Carranga",
+  "description": "Agrupación musical de carranga profesional para fiestas, bodas y eventos empresariales.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#047857",
+  "theme_color": "#047857",
+  "lang": "es",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/apple-touch-180.png", "sizes": "180x180", "type": "image/png", "purpose": "any" }
+  ]
+}
